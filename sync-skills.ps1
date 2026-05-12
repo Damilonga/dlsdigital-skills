@@ -4,8 +4,8 @@
 # Executado pelo Task Scheduler: DLS-Skills-Sync
 
 $ErrorActionPreference = "Stop"
-$skillsDir = "C:\Users\Dario\.claude\skills"
-$logFile = "C:\Users\Dario\.claude\skills\sync.log"
+$skillsDir = "D:\Mega\CLAUDE_SKILLS"
+$logFile = "D:\Mega\CLAUDE_SKILLS\sync.log"
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
 function Log($msg) {

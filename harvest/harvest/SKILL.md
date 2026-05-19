@@ -1,6 +1,6 @@
 ---
 name: harvest
-description: "Captura aprendizados da sessao atual e salva em C:\\Users\\dario\\Documents\\MEGA\\CLAUDE CODE DJ CONTROL\\dlsdigital-operacao-ia\\logs\\harvest\\ (Mega + git), na VPS e atualiza MEMORY.md. Use /harvest ao final de qualquer sessao produtiva."
+description: "Captura aprendizados da sessao atual e salva em D:\\Mega\\CLAUDE CODE DJ CONTROL\\dlsdigital-operacao-ia\\logs\\harvest\\ (Mega + git), na VPS e atualiza MEMORY.md. Use /harvest ao final de qualquer sessao produtiva."
 model: sonnet
 effort: low
 ---
@@ -8,7 +8,7 @@ effort: low
 # /harvest — Colheita de Aprendizados
 
 Analise a sessao atual e salve os aprendizados em TRES lugares:
-1. **Mega** — `C:\Users\dario\Documents\MEGA\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest\YYYY-MM-DD.md`
+1. **Mega** — `D:\Mega\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest\YYYY-MM-DD.md`
 2. **VPS** — `/root/.operacao-ia/logs/harvest/YYYY-MM-DD.md` via paramiko
 3. **MEMORY.md** — `C:\Users\dario\Documents\MEGA\.claude-memory\MEMORY.md` (sincroniza entre notebooks via MEGA)
 
@@ -55,12 +55,7 @@ content = f"""## Sessao {ts} — RESUMO_DE_1_LINHA
 """.strip()
 
 # ── 1. Salvar no Mega (dentro do repo git) ────────────────────────────────────
-# Detecta automaticamente o caminho correto (notebook casa = D:\Mega, trabalho = C:\Users\dario\Documents\MEGA)
-_candidates = [
-    Path(r"D:\Mega\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest"),
-    Path(r"C:\Users\dario\Documents\MEGA\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest"),
-]
-mega_dir = next((p for p in _candidates if p.parent.parent.parent.parent.exists()), _candidates[-1])
+mega_dir = Path(r"D:\Mega\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest")
 mega_dir.mkdir(parents=True, exist_ok=True)
 mega_file = mega_dir / f"{today}.md"
 
@@ -101,12 +96,7 @@ except Exception as e:
 
 # ── 3. Commit no git ──────────────────────────────────────────────────────────
 import subprocess
-# Detecta repo correto entre os dois notebooks
-_repo_candidates = [
-    r"D:\Mega\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia",
-    r"C:\Users\dario\Documents\MEGA\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia",
-]
-repo = next((r for r in _repo_candidates if Path(r).exists()), _repo_candidates[-1])
+repo = r"D:\Mega\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia"
 subprocess.run(["git", "-C", repo, "add", "logs/harvest/"], capture_output=True)
 r = subprocess.run(
     ["git", "-C", repo, "commit", "-m", f"harvest: sessao {today} {ts}"],

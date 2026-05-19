@@ -11,13 +11,14 @@ Execute o fluxo completo de encerramento — harvest, status, proximos passos, M
 
 ## Fluxo em ordem
 
-### Passo 1: Harvest (3 destinos)
+### Passo 1: Harvest (4 destinos)
 Execute `/harvest`. Ele salva em:
-- `D:\Mega\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest\YYYY-MM-DD.md` (Mega + acessivel nos dois notebooks)
+- `[Mega]\CLAUDE CODE DJ CONTROL\dlsdigital-operacao-ia\logs\harvest\YYYY-MM-DD.md` — detectado automaticamente (`D:\Mega` no note casa, `C:\Users\dario\Documents\MEGA` no note trabalho)
 - `/root/.operacao-ia/logs/harvest/YYYY-MM-DD.md` (VPS via paramiko)
 - Git commit + push automatico
+- MEMORY.md atualizado com novas infos da sessao
 
-Confirme os 3 destinos antes de continuar.
+Confirme os 4 destinos antes de continuar.
 
 ### Passo 2: Status rapido na VPS
 ```python
@@ -60,9 +61,10 @@ Status da operacao:
 - API: {health}
 
 Harvest salvo em:
-- Mega: logs/harvest/YYYY-MM-DD.md
+- Mega: C:\Users\dario\Documents\MEGA\...\logs\harvest\YYYY-MM-DD.md
 - VPS: /root/.operacao-ia/logs/harvest/YYYY-MM-DD.md
 - Git: commit {hash}
+- MEMORY.md: atualizado
 
 Proxima sessao — prioridades:
 1. {tarefa 1}
@@ -74,8 +76,9 @@ Ate a proxima, Dario!
 
 ## Regras
 
-- Confirmar os 3 destinos do harvest ANTES de mostrar mensagem final
+- Confirmar os 4 destinos do harvest ANTES de mostrar mensagem final (Mega + VPS + Git + MEMORY.md)
 - Sempre verificar status da VPS (guardian + disco + API health)
 - Se o harvest falhar na VPS, informar mas nao bloquear o encerramento
 - Mensagem de encerramento deve ser positiva e encorajadora
 - Nunca encerrar sem confirmar que o harvest foi salvo ao menos no Mega e no Git
+- O script detecta automaticamente o caminho Mega (`D:\Mega` no note casa, `C:\Users\dario\Documents\MEGA` no note trabalho) — nao precisa editar

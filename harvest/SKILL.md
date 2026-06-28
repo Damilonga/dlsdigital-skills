@@ -37,6 +37,20 @@ PROJECTS = {
         "harvest_rel_path": "docs/harvest/",
         "vps": None,  # CardapIA roda na Vercel, sem VPS
     },
+    "barbearia-pro": {
+        "match": ["Barbeiro-Pro", "Barbearia-Pro", "TURBOSAAS"],
+        "harvest_dir_candidates": [
+            r"C:\Users\dario\Documents\MEGA\TURBOSAAS\SAAS\Barbeiro-Pro\docs\harvest",
+            r"D:\Mega\TURBOSAAS\SAAS\Barbeiro-Pro\docs\harvest",
+        ],
+        "repo_candidates": [
+            r"C:\Users\dario\Documents\MEGA\TURBOSAAS\SAAS\Barbeiro-Pro",
+            r"D:\Mega\TURBOSAAS\SAAS\Barbeiro-Pro",
+        ],
+        "branch": "main",
+        "harvest_rel_path": "docs/harvest/",
+        "vps": None,  # BarbeiroPro roda na Vercel, sem VPS
+    },
     "dlsdigital": {
         "match": ["dlsdigital-operacao-ia", "operacao-ia"],
         "harvest_dir_candidates": [
